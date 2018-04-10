@@ -4,7 +4,17 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-app.get(function(res, req) {
+var bookRouter = express.Router();
+
+bookRouter.route('/Books')
+	.get(function(req,res){
+		var responseJson = {hello: "This is the api"};
+		res.json(responseJson);
+	});
+
+app.use('/api', bookRouter);
+
+app.get('/', function(req, res) {
 	res.send('Welcome to my API');
 });
 
